@@ -4,7 +4,8 @@ Title: Double twopiece distributions
 Version: 0.1.0
 Author: F. Javier Rubio
 Maintainer: The package maintainer <fxrubio@gmail.com>
-Description: Density, distribution function, quantile function and random generation for Double twopiece distributions. 
+Description: Density, distribution function, quantile function and random generation for Double twopiece distributions with 3 parameterisations: two-piece (tp), epsilon-skew (eps), and inverse scale factors (isf).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.1
