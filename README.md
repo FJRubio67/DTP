@@ -59,7 +59,7 @@ library(DTP)
 
 # Double two-piece t with different left and right tail weights
 x <- seq(-6, 6, length.out = 500)
-plot(x, ddtp(x, mu = 0, sigma = 1, gamma = 0.3,
+plot(x, ddtp(x, mu = 0, par1 = 1, par2 = 0.3,
              delta1 = 2, delta2 = 8, f = dt, param = "eps"),
      type = "l", ylab = "Density", main = "DTP-t distribution")
 ```
