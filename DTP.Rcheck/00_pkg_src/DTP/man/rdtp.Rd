@@ -29,6 +29,9 @@ rdtp(n, mu, par1, par2, delta1, delta2, rF, f, param = "tp")
 
 \item{log, }{log.p: logical; if TRUE, probabilities p are given as log(p).}
 }
+\value{
+
+}
 \description{
 Random Number Generation for DTP distributions
 }

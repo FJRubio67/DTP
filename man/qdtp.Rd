@@ -29,9 +29,6 @@ qdtp(p, mu, par1, par2, delta1, delta2, qF, f, param = "tp")
 
 \item{log, }{log.p: logical; if TRUE, probabilities p are given as log(p).}
 }
-\value{
-
-}
 \description{
 Quantile Function for DTP distributions
 }

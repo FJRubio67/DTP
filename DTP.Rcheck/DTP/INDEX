@@ -1,0 +1,6 @@
+ddtp                    Probability Density Function for DTP
+                        distributions
+pdtp                    Cumulative Probability Function for DTP
+                        distributions
+qdtp                    Quantile Function for DTP distributions
+rdtp                    Random Number Generation for DTP distributions

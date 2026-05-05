@@ -29,9 +29,6 @@ pdtp(x, mu, par1, par2, delta1, delta2, F, f, param = "tp", log.p = FALSE)
 
 \item{log, }{log.p: logical; if TRUE, probabilities p are given as log(p).}
 }
-\value{
-
-}
 \description{
 Cumulative Probability Function for DTP distributions
 }

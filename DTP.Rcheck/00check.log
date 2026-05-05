@@ -1,0 +1,96 @@
+* using log directory ‘/Users/javierrubio/Documents/GitHub/DTP.Rcheck’
+* using R version 4.5.2 (2025-10-31)
+* using platform: aarch64-apple-darwin20
+* R was compiled by
+    Apple clang version 16.0.0 (clang-1600.0.26.6)
+    GNU Fortran (GCC) 14.2.0
+* running under: macOS Tahoe 26.4.1
+* using session charset: UTF-8
+* using options ‘--no-manual --as-cran’
+* checking for file ‘DTP/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘DTP’ version ‘0.1.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking serialization versions ... OK
+* checking whether package ‘DTP’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking for future file timestamps ... NOTE
+unable to verify current time
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking code files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+rdtp: no visible global function definition for ‘runif’
+Undefined global functions or variables:
+  runif
+Consider adding
+  importFrom("stats", "runif")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+prepare_Rd: ddtp.Rd:32-34: Dropping empty section \value
+prepare_Rd: pdtp.Rd:32-34: Dropping empty section \value
+prepare_Rd: qdtp.Rd:32-34: Dropping empty section \value
+prepare_Rd: rdtp.Rd:32-34: Dropping empty section \value
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in Rd file 'ddtp.Rd'
+  ‘x’ ‘mu’ ‘par1’ ‘par2’ ‘delta1’ ‘delta2’ ‘f’ ‘param’
+Documented arguments not in \usage in Rd file 'ddtp.Rd':
+  ‘x:’ ‘p:’ ‘n:’ ‘mu:’ ‘par1:’ ‘par2:’ ‘delta1:’ ‘delta2:’ ‘param:’ ‘F’
+
+Undocumented arguments in Rd file 'pdtp.Rd'
+  ‘x’ ‘mu’ ‘par1’ ‘par2’ ‘delta1’ ‘delta2’ ‘f’ ‘param’ ‘log.p’
+Documented arguments not in \usage in Rd file 'pdtp.Rd':
+  ‘x:’ ‘p:’ ‘n:’ ‘mu:’ ‘par1:’ ‘par2:’ ‘delta1:’ ‘delta2:’ ‘param:’
+
+Undocumented arguments in Rd file 'qdtp.Rd'
+  ‘p’ ‘mu’ ‘par1’ ‘par2’ ‘delta1’ ‘delta2’ ‘qF’ ‘f’ ‘param’
+Documented arguments not in \usage in Rd file 'qdtp.Rd':
+  ‘x:’ ‘p:’ ‘n:’ ‘mu:’ ‘par1:’ ‘par2:’ ‘delta1:’ ‘delta2:’ ‘param:’ ‘F’
+  ‘log’
+
+Undocumented arguments in Rd file 'rdtp.Rd'
+  ‘n’ ‘mu’ ‘par1’ ‘par2’ ‘delta1’ ‘delta2’ ‘rF’ ‘f’ ‘param’
+Documented arguments not in \usage in Rd file 'rdtp.Rd':
+  ‘x:’ ‘p:’ ‘n:’ ‘mu:’ ‘par1:’ ‘par2:’ ‘delta1:’ ‘delta2:’ ‘param:’ ‘F’
+  ‘log’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking examples ... NONE
+* checking for non-standard things in the check directory ... OK
+* checking for detritus in the temp directory ... OK
+* DONE
+Status: 1 WARNING, 3 NOTEs

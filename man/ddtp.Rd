@@ -29,9 +29,6 @@ ddtp(x, mu, par1, par2, delta1, delta2, f, param = "tp", log = FALSE)
 
 \item{param:}{parameterisations used.}
 }
-\value{
-
-}
 \description{
 Probability Density Function for DTP distributions
 }
