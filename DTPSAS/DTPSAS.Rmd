@@ -1,0 +1,139 @@
+---
+title: "The Double two-piece Sinh-Arcsinh distribution"
+author: '[F. Javier Rubio](https://sites.google.com/site/fjavierrubio67/)'
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  html_document:
+    toc: true
+    toc_float: true
+bibliography: references.bib
+---
+
+# Two-Piece Scale and Shape Transformations
+
+Let ${\mathcal F}$ be the family of continuous, unimodal, symmetric densities $\tilde f(\cdot;\mu,\sigma,\delta)$ with support on ${\mathbb R}$ and with mode and location parameter $\mu\in{\mathbb R}$, scale parameter $\sigma\in{\mathbb R}_+$, and shape parameter $\delta\in\Delta\subset{\mathbb R}$. A shape parameter is anything that is not a location or a scale parameter.
+
+Denote $\tilde f(x;\mu,\sigma,\delta)=\dfrac{1}{\sigma}\tilde f\left(\dfrac{x-\mu}{\sigma};0,1,\delta\right)\equiv\dfrac{1}{\sigma}f\left(\dfrac{x-\mu}{\sigma};\delta\right)$. Distribution functions are denoted by the corresponding uppercase letters. We define the two-piece probability density function constructed of $f(x;\mu,\sigma_1,\delta_1)$ truncated to $(-\infty,\mu)$ and $f(x;\mu,\sigma_2,\delta_2)$ truncated to $[\mu,\infty)$:
+$$
+s(x;\mu,\sigma_1,\sigma_2,\delta_1,\delta_2) = \dfrac{2\varepsilon }{\sigma_1}f\left(\dfrac{x-\mu}{\sigma_1};\delta_1\right)I(x<\mu) + \dfrac{2(1-\varepsilon) }{\sigma_2}f\left(\dfrac{x-\mu}{\sigma_2};\delta_2\right)I(x\geq\mu),
+$$
+where we achieve a continuous density function if we choose
+$$
+\varepsilon = \dfrac{\sigma_1 f(0;\delta_2)}{\sigma_1 f(0;\delta_2)+\sigma_2 f(0;\delta_1)}.
+$$
+This family of distributions is referred to as the family of Double Two-Piece (DTP) family of distributions [@rubio:2015]. The corresponding cumulative distribution function is then given by
+$$
+\begin{aligned}
+S(x;\mu,\sigma_1,\sigma_2,\delta_1,\delta_2) &= 2\varepsilon F\left(\dfrac{x-\mu}{\sigma_1};\delta_1\right)I(x<\mu)\\
+&+ \left\{\varepsilon +(1-\varepsilon)\left[2F\left(\dfrac{x-\mu}{\sigma_2};\delta_2\right)-1\right]\right\}I(x\geq\mu).
+\end{aligned}
+$$
+The quantile function can be obtained by inverting the CDF. These functions are implemented in the [DTP R package](https://rpubs.com/FJRubio/DTP). By construction, this density is continuous, unimodal with mode at $\mu$, and the amount of mass to the left of its mode is given by $S(\mu;\mu,\sigma_1,\sigma_2,\delta_1,\delta_2)=\varepsilon$. This transformation preserves the ease of use of the original distribution $f$ and allows $s$ to have different shapes in each direction, dictated by  $\delta_1$ and $\delta_2$. In addition, by varying the ratio $\sigma_1/\sigma_2$, we control the allocation of mass on either side of the mode.
+
+# The DTP Sinh-Arcsinh (SAS) distribution
+
+The [Sinh-Arcsinh distribution](https://rpubs.com/FJRubio/SAS) [@jones:2009] is a flexible 4-parameter distribution that can account for varying tail behaviour as well as asymmetry. @rubio:2016 showed that the asymmetry levels obtained by this distribution are limited, and proposed introducing skewness by means of the two-piece transformation [@rubio:2020] (see [TPSAS Package](https://rpubs.com/FJRubio/TPSAS)). In order to capture different tails and scale on each side of the mode, @rubio:2015 proposed a distribution obtained by transforming the symmetric Sinh-Arcsinh distribution using the DTP construction described in the previous section. This is, the baseline distribution is the symmetric SAS distribution [@jones:2009,rubio:2015]:
+\[
+f(x;\delta) = {\delta}\phi\left[\sinh\left(\delta \operatorname{arcsinh}\left(x\right)\right)\right] \dfrac{\cosh\left(\delta \operatorname{arcsinh}\left(x\right)\right)}{\sqrt{1+x^2}},
+\]
+where $\phi(x) = \dfrac{1}{\sqrt{2\pi}}\exp\left\{-\dfrac{x^2}{2} \right\}$. The implementation of the pdf, cdf, quantile function, and random number generation can be done using the DTP R package as illustrate below.
+
+# DTP SAS pdf, cdf, quantile, and RNG
+
+```{r}
+#####################################################################
+# mu       : location parameter 
+# sigma1   : scale parameter 1
+# sigma1   : scale parameter 1
+# delta1   : shape parameter 1
+# delta2   : shape parameter 2 
+#####################################################################
+# Required package
+# 
+library(DTP)
+#********************************************************************************
+# Baseline functions
+#********************************************************************************
+# baseline symmetric SAS pdf
+dsas0 <- function(x,delta,log=FALSE){
+         logPDF <- dnorm(sinh(delta*asinh(x)),log=T) + log(delta) + log(cosh(delta*asinh(x))) -0.5*log(1+x^2)
+  ifelse( is.numeric(logPDF),ifelse( log, return(logPDF), return(exp(logPDF)) ), logPDF )
+}
+
+# baseline symmetric SAS cdf
+psas0 <- function(x,delta,log.p=FALSE){
+         logCDF <- pnorm(sinh(delta*asinh(x)),log.p=T)
+  ifelse( is.numeric(logCDF),ifelse( log.p, return(logCDF), return(exp(logCDF)) ), logCDF )
+}
+
+# baseline quantile function
+qsas0 <- function(p,delta){
+         Q <- sinh((asinh(qnorm(p)))/delta)
+  return(Q)
+}
+
+# baseline RNG
+rsas0 <- function(n,delta){
+         sample <- sinh((asinh(rnorm(n)))/delta)
+  return(sample)
+}
+
+#********************************************************************************
+# DTP SAS functions
+#********************************************************************************
+# Probability Density Function
+ddtpsas <- function(x, mu, sigma1, sigma2, delta1, delta2, log = FALSE){
+out <- ddtp(x, mu, sigma1, sigma2, delta1, delta2, dsas0, param = "tp", log = log)
+return(out)
+}
+
+# Cumulative Distribution Function
+pdtpsas <- function(x, mu, sigma1, sigma2, delta1, delta2, log.p = FALSE){
+  out <- pdtp(x, mu, sigma1, sigma2, delta1, delta2, psas0, dsas0, param = "tp", log = FALSE)
+  return(out)
+}
+
+# Quantile Function
+qdtpsas <- function(x, mu, sigma1, sigma2, delta1, delta2, log.p = FALSE){
+  out <- qdtp(x, mu, sigma1, sigma2, delta1, delta2, rsas0, dsas0, param = "tp", log = FALSE)
+  return(out)
+}
+
+# RNG Function
+rdtpsas <- function(x, mu, sigma1, sigma2, delta1, delta2, log.p = FALSE){
+  out <- rdtp(x, mu, sigma1, sigma2, delta1, delta2, rsas0, dsas0, param = "tp")
+  return(out)
+}
+```
+
+# Illustrations 
+
+```{r}
+####################################################
+# Illustrations
+####################################################
+
+# Simulated data
+set.seed(123)
+data <- rdtpsas(1000,0,1,2,0.75,1.5)
+# True pdf
+pdf.true <- Vectorize(function(x) ddtpsas(x,0,1,2,0.75,1.5))
+# True cdf
+cdf.true <- Vectorize(function(x) pdtpsas(x,0,1,2,0.75,1.5))
+
+
+# Histogram vs pdf
+hist(data, breaks = 30, probability = T, cex.axis = 1.5, cex.lab = 1.5, 
+     xlab = "x", ylab = "density", main = "Histogram vs pdf")
+curve(pdf.true, -5,15, add= T, col="red", lwd = 2, n = 1000)
+box()
+
+
+# ECDF vs cdf
+plot(ecdf(data), cex.axis = 1.5, cex.lab = 1.5, 
+     xlab = "x", ylab = "cdf", main = "ECDF vs cdf")
+curve(cdf.true, -5,15, add= T, col="gray", lwd = 2, n = 1000)
+box()
+```
+
+# References
