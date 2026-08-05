@@ -66,12 +66,13 @@ plot(x, ddtp(x, mu = 0, par1 = 1, par2 = 0.3,
 
 ## Tutorials
 
-- [DTP package](https://rpubs.com/FJRubio/DTP) — illustrative walkthrough with
+- [DTP package](https://fjrubio-dtp.share.connect.posit.cloud/) — illustrative walkthrough with
   examples and parameter interpretation
-- [The double two-piece sinh-arcsinh distribution](https://rpubs.com/FJRubio/DTPSAS) —
+- [The double two-piece sinh-arcsinh distribution](https://fjrubio-dtpsas.share.connect.posit.cloud/) —
   DTP applied to the sinh-arcsinh baseline
-- [Galton's forecasting competition](https://rpubs.com/FJRubio/Galton) —
+- [Galton's forecasting competition](https://fjrubio-galton.share.connect.posit.cloud/) —
   real-data example fitting DTP-t to Galton's (1907) ox weight data
+  - [Bivariate Distributions with twopiece and double twopiece marginals](https://fjrubio-gcoptp.share.connect.posit.cloud/) - real-data example for fitting a bivariate distribution via Gaussian copula with twopiece and double-twopiece marginals. 
 
 ## Related packages
 
