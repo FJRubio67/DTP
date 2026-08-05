@@ -72,7 +72,7 @@ plot(x, ddtp(x, mu = 0, par1 = 1, par2 = 0.3,
   DTP applied to the sinh-arcsinh baseline
 - [Galton's forecasting competition](https://fjrubio-galton.share.connect.posit.cloud/) —
   real-data example fitting DTP-t to Galton's (1907) ox weight data
-  - [Bivariate Distributions with twopiece and double twopiece marginals](https://fjrubio-gcoptp.share.connect.posit.cloud/) - real-data example for fitting a bivariate distribution via Gaussian copula with twopiece and double-twopiece marginals. 
+- [Bivariate Distributions with twopiece and double twopiece marginals](https://fjrubio-gcoptp.share.connect.posit.cloud/) - real-data example for fitting a bivariate distribution via Gaussian copula with twopiece and double-twopiece marginals. 
 
 ## Related packages
 
